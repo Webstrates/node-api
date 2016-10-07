@@ -1,0 +1,22 @@
+{
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {}
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "brace-style": ["warn", "stroustrup"],
+    "require-jsdoc": ["error", {
+        "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": true,
+            "ClassDeclaration": true
+        }
+    }],
+    "valid-jsdoc": "warn"
+  }
+}

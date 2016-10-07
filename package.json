@@ -1,0 +1,34 @@
+{
+  "name": "webstrates",
+  "version": "0.0.2",
+  "description": "Webstrates API to handle with webstrate documents.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/grunt/bin/grunt"
+  },
+  "keywords": [
+    "Webstrates",
+    "api"
+  ],
+  "author": "Kristian Antonsen",
+  "contributors": [
+    "Roman Rädle"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "json0-ot-diff": "^1.0.1",
+    "jsonml-parse": "git+https://github.com/kbadk/jsonml-parse#master",
+    "jsonml-tools": "git+http://github.com/cklokmose/jsonml-tools.git#master",
+    "sharedb": "^0.11.37",
+    "websocket": "^1.0.23"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
+    "grunt": "^1.0.1",
+    "grunt-mocha-test": "^0.13.2",
+    "mocha": "^3.1.0",
+    "mocha-eslint": "^3.0.1",
+    "websocket": "^1.0.23"
+  }
+}
