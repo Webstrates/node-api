@@ -11,24 +11,23 @@ const defaultWebstrateId = "test";
 
 describe("client", () => {
 
-  it("event callbacks", () => {
+  it("client event callbacks", () => {
 
     const ws = new MockW3WebSocket();
 
     const client = new Client(ws);
-    const document = client.openDocument(defaultWebstrateId);
 
     let connectedHandler = () => { };
     let spyConnectedHandler = chai.spy(connectedHandler);
-    document.onDidConnect(spyConnectedHandler);
+    client.onDidConnect(spyConnectedHandler);
 
     let errorHandler = () => { };
     let spyErrorHandler = chai.spy(errorHandler);
-    document.onError(spyErrorHandler);
+    client.onError(spyErrorHandler);
 
     let disconnectedHandler = () => { };
     let spyDisconnectedHandler = chai.spy(disconnectedHandler);
-    document.onDidDisconnect(spyDisconnectedHandler);
+    client.onDidDisconnect(spyDisconnectedHandler);
 
     ws.startServer();
     ws.provokeError();
