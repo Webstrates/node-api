@@ -9,13 +9,16 @@ const { expect } = chai;
 
 const defaultWebstrateId = "test";
 
+/**
+ * Test Webstrates node client event handling.
+ */
 describe("client", () => {
 
   it("client event callbacks", () => {
 
-    const ws = new MockW3WebSocket();
+    const websocket = new MockW3WebSocket();
 
-    const client = new Client(ws);
+    const client = new Client(websocket);
 
     let connectedHandler = () => { };
     let spyConnectedHandler = chai.spy(connectedHandler);
@@ -29,9 +32,9 @@ describe("client", () => {
     let spyDisconnectedHandler = chai.spy(disconnectedHandler);
     client.onDidDisconnect(spyDisconnectedHandler);
 
-    ws.startServer();
-    ws.provokeError();
-    ws.stopServer();
+    websocket.startServer();
+    websocket.provokeError();
+    websocket.stopServer();
 
     expect(spyConnectedHandler).to.have.been.called.once;
     expect(spyErrorHandler).to.have.been.called.once;

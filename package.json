@@ -4,7 +4,7 @@
   "description": "Webstrates Node API to handle with webstrate documents.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/grunt/bin/grunt"
+    "test": "./node_modules/mocha/bin/mocha --reporter spec test/**/*.js"
   },
   "keywords": [
     "Webstrates",
@@ -26,8 +26,6 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-spies": "^0.7.1",
-    "grunt": "^1.0.1",
-    "grunt-mocha-test": "^0.13.2",
     "mocha": "^3.1.0",
     "mocha-eslint": "^3.0.1"
   }
