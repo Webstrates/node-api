@@ -38,12 +38,6 @@ const W3CWebSocket = function () {
   };
   /*eslint-enable no-unused-vars*/
 
-  /*eslint-disable no-unused-vars*/
-  module.onunknowndata = data => {
-    // empty
-  };
-  /*eslint-enable no-unused-vars*/
-
   module.send = message => {
     // console.log(`send from client ${JSON.stringify(message)}`);
     em.trigger("send", message);
@@ -64,10 +58,6 @@ const W3CWebSocket = function () {
 
   module.close = () => {
     module.onclose.call(this, {});
-  };
-
-  module.sendFakedMessage = message => {
-    module.onmessage.call(this, { data: JSON.stringify(message) });
   };
 
   return module;
