@@ -4,7 +4,8 @@
   "description": "Webstrates Node API to handle with webstrate documents.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter spec test/**/*.js"
+    "test": "./node_modules/mocha/bin/mocha --reporter spec test/*.js",
+    "test-watch": "./node_modules/mocha/bin/mocha --watch --reporter spec test/*.js"
   },
   "keywords": [
     "Webstrates",
@@ -20,13 +21,14 @@
     "json0-ot-diff": "^1.0.1",
     "jsonml-parse": "git+https://github.com/kbadk/jsonml-parse#master",
     "jsonml-tools": "git+http://github.com/cklokmose/jsonml-tools.git#master",
-    "sharedb": "^0.11.37",
+    "sharedb": "^1.0.0-beta.5",
     "websocket": "^1.0.23"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-spies": "^0.7.1",
     "mocha": "^3.1.0",
-    "mocha-eslint": "^3.0.1"
+    "mocha-eslint": "^3.0.1",
+    "websocket-json-stream": "0.0.3"
   }
 }
