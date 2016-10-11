@@ -11,8 +11,6 @@ const WebSocketJSONStream = require('websocket-json-stream');
 chai.use(spies);
 const { expect } = chai;
 
-const defaultWebstrateId = "test";
-
 /**
  * Test Webstrates node client.
  */
@@ -23,8 +21,6 @@ describe("client", () => {
   let share;
 
   beforeEach(() => {
-    //   // console.log('each');
-
     server = new WebSocketServer();
     websocket = new W3CWebSocket();
     server.connect(websocket);
@@ -41,67 +37,49 @@ describe("client", () => {
   });
 
   /**
-   * Test node client event handling.
+   * Testing client connected event callback.
    */
-  it("client event callbacks", done => {
+  it("connected event", done => {
 
     const client = new Client(websocket);
 
-    const whenDone = () => {
+    let spyConnectedHandler = chai.spy(() => {
       expect(spyConnectedHandler).to.have.been.called.once;
-      expect(spyErrorHandler).to.have.been.called.once;
-      expect(spyDisconnectedHandler).to.have.been.called.once;
-
       done();
-    };
-
-    let connectedHandler = () => {
-      server.provokeError();
-    };
-    let spyConnectedHandler = chai.spy(connectedHandler);
+    });
     client.onDidConnect(spyConnectedHandler);
-
-    let errorHandler = () => {
-      server.close();
-    };
-    let spyErrorHandler = chai.spy(errorHandler);
-    client.onError(spyErrorHandler);
-
-    let disconnectedHandler = () => {
-      whenDone();
-    };
-    let spyDisconnectedHandler = chai.spy(disconnectedHandler);
-    client.onDidDisconnect(spyDisconnectedHandler);
   });
 
   /**
-   * Test for non-existing document.
+   * Testing client disconnected event callback.
    */
-  it("non-existing document (incl. sharedb)", done => {
-
-    websocket.onDidSend(rawData => {
-      try {
-        const data = JSON.parse(rawData);
-        switch (data.a) {
-          // Message for document "test" --> {"a":"s","c":"clients","d":"test"}
-          case "s":
-            expect(data).to.deep.equal({ a: 's', c: 'webstrates', d: 'test' });
-            break;
-        }
-      }
-      catch (error) {
-        throw error;
-      }
-    });
+  it("disconnected event", done => {
 
     const client = new Client(websocket);
-    const document = client.openDocument(defaultWebstrateId);
 
-    let newDocumentHandler = () => {
+    let spyDisconnectedHandler = chai.spy(() => {
+      expect(spyDisconnectedHandler).to.have.been.called.once;
       done();
-    };
-    let spyNewDocumentHandler = chai.spy(newDocumentHandler);
-    document.onNewDocument(spyNewDocumentHandler);
+    });
+    client.onDidDisconnect(spyDisconnectedHandler);
+      
+    server.close();
+  });
+
+  /**
+   * Testing client error event callback.
+   */
+  it("error event", done => {
+
+    const client = new Client(websocket);
+
+    let spyErrorHandler = chai.spy(() => {
+      expect(spyErrorHandler).to.have.been.called.once;
+      done();
+    });
+    client.onError(spyErrorHandler);
+
+    server.provokeError();
   });
 
   /**
@@ -130,66 +108,5 @@ describe("client", () => {
     });
 
     new Client(websocket, { keepAliveTimeout: 0 });
-  });
-
-  it("connection (incl. sharedb)", done => {
-
-    var originalHtml =
-      `<html __wid="czikS1SO">
-
-  <head __wid="dKPcdJxR">
-    <script type="text/javascript" __wid="aedXgObF">
-      console.log("Hello Script!");
-    </script>
-
-    <style type="text/css" __wid="a0oL1xW_">
-      html,
-      body {
-        background: deeppink;
-        color: deepskyblue;
-      }
-    </style>
-  </head>
-
-  <body __wid="MaRY_oFn">
-    <div __wid="5gHV2_6w">Hello World!</div>
-  </body>
-
-  </html>`;
-
-    var filteredHtml = `<html __wid="-czikS1SO"><body __wid="MaRY_oFn"></body></html>`;
-
-    const client = new Client(websocket);
-    let document = client.openDocument(defaultWebstrateId);
-
-    // Create document first.
-    document.onNewDocument(() => {
-      document.update(originalHtml);
-      document.close();
-
-      document = client.openDocument(defaultWebstrateId);
-      document.onUpdate(e => expect(e).to.equal(originalHtml), { filter: doc => doc });
-      document.onUpdate(e => expect(e).to.equal(filteredHtml), { filter: () => ["html", { "__wid": "-czikS1SO" }, ["body", { "__wid": "MaRY_oFn" }]] });
-      document.onUpdate(() => done());
-    });
-  });
-
-  it("update document", done => {
-
-    const newHtml = `<html><body><div>Hello Update!</div></body></html>`;
-
-    const client = new Client(websocket);
-    let document = client.openDocument(defaultWebstrateId);
-
-    document.onNewDocument(() => {
-      document.close();
-
-      document = client.openDocument(defaultWebstrateId);
-      document.onUpdateOp(e => {
-        expect(e).to.equals(newHtml);
-        done();
-      });
-      document.update(newHtml);
-    });
   });
 });
