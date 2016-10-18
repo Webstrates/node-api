@@ -1,5 +1,11 @@
+# gitignore configuration
 .gitignore
-.eslintrc.json
-Gruntfile.js
-results.txt
-test/
+
+# ESLint configuration
+.eslintrc
+
+# Test directory
+test
+
+# Example directory
+example
