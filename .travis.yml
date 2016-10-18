@@ -1,3 +1,11 @@
 language: node_js
 node_js:
-  - "6"
+- '6'
+deploy:
+  provider: npm
+  email: contact@romanraedle.com
+  api_key:
+    secure: BlMHGRTfws/TnONgjeda1p/S1KBM8KHQzDTIH75TwQRDT8DL6tX7EGcWXYEJ7TI5A7NN4uFFP2R+LfpHJCQMNBJITfHfAqgd8LO4gA0iP6OaBVM8TmT3X+Eax9EQowUHHupQey38yeTifh+qMcp2XlnlsZVasfiJNtXb1l8TOvYL4gr6DxseET7nyyJx0pyWPpQwGVsKZtErUn5/oebGfeNADaks8ThA/7rmPpjsl78k3YWbGMZVcGdsQ62dt1HJ7ocI3/z0qxJoH10gzr8VR4BecQg7bpoHPPnqtaxDqExomvgSq/GRd3aD8omDOO8/CLahHkDzMXUU5ASkUTvkV3m37QR/oPx2+uNt1Yn2FdxFfpF1j6dXjKxSp8Rba2xkGQKOBPVjy2aT92Vl960P7emYU0twgh8kCHf/glhUbW3vy1d2tTtOVtIEd4NwQpu0GO07QJA7myoSMQDLwtfqJbTGFLjTrTGbGMd5i9wKq13mM+d1hsi7KnE48hQCwUdMj/Eg4XCrKLGNc6ioP70uUygZk5EfSTJryFanKuif20x9yYJydhZcJ4zmE9AYt33AiuxyCAj5txngdzj5N45+uv9ao02sPinu4S8mpkiPSaCzdylXz5PAhCyj+Dgn0+CVjGA0k8LRddh8tSNz0AR4pirnk0xST0s+0aGFbkxQwVs=
+  on:
+    tags: true
+    repo: Webstrates/node-api
