@@ -1,6 +1,6 @@
 {
   "name": "webstrates",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Webstrates Node API to handle with webstrate documents.",
   "main": "index.js",
   "scripts": {
