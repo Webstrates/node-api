@@ -25,7 +25,7 @@
     "json0-ot-diff": "^1.0.1",
     "jsonml-parse": "git+https://github.com/kbadk/jsonml-parse#master",
     "jsonml-tools": "git+http://github.com/cklokmose/jsonml-tools.git#master",
-    "sharedb": "^1.0.0-beta.5",
+    "sharedb": "^1.0.0-beta.6",
     "websocket": "^1.0.23"
   },
   "devDependencies": {

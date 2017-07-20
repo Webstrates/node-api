@@ -123,6 +123,14 @@ describe("document", () => {
   <head __wid="dKPcdJxR">
     <script type="text/javascript" __wid="aedXgObF">
       console.log("Hello Script!");
+
+      for (var i = 0; i < 10; i++) {
+        console.log("Hello i", i);
+      }
+
+      if (true && true) {
+        console.log("True hello");
+      }
     </script>
 
     <style type="text/css" __wid="a0oL1xW_">
