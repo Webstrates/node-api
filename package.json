@@ -7,7 +7,6 @@
     "test": "./node_modules/mocha/bin/mocha --reporter spec test/*.js",
     "test-watch": "./node_modules/mocha/bin/mocha --watch --reporter spec test/*.js",
     "client-cli": "node ./example/client-cli.js",
-    "preversion": "npm test",
     "version": "git add -A",
     "postversion": "git push && git push --tags"
   },
