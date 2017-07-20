@@ -124,7 +124,7 @@ describe("document", () => {
     <script type="text/javascript" __wid="aedXgObF">
       console.log("Hello Script!");
 
-      for (var i = 0; i < 10; i++) {
+      for (var i = 10; i > 0; i++) {
         console.log("Hello i", i);
       }
 
